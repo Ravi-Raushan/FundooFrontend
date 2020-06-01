@@ -1,0 +1,121 @@
+<html>
+  <form #myForm="ngForm"> 
+<div fxLayoutAlign="space-around center" fxFlex="100">
+  <mat-card fxFlex="35" class="card" fxFlex.xs="100">
+    <mat-card-title class="fundoo">
+      <span class="f">F</span>
+      <span class="u">u</span>
+      <span class="n">n</span>
+      <span class="d">d</span>
+      <span class="o">o</span>
+      <span class="oo">o</span>
+    </mat-card-title>
+    <mat-card-header>
+      <mat-card-title calss="acc">Create your Fundoo Account</mat-card-title>
+    </mat-card-header>
+
+
+     <body>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+        <mat-form-field fxFlex.xs="100" appearance="outline" id="firstname">
+          <mat-label fxFlex="40" aria-autocomplete="off" > First name</mat-label>
+          <input matInput placeholder="First name" pattern="^[A-Z][a-z]{2,}$" [formControl]="firstname" />
+          <mat-error *ngIf="firstname.hasError('required')">
+            First name is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="
+          firstname.hasError('pattern') &&
+          !firstname.hasError('required')
+        "> 
+      Please enter a valid fast name
+    </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex.xs="100" appearance="outline" id="lastname">
+          <mat-label fxFlex="40" aria-autocomplete="off"> Last name</mat-label>
+          <input matInput placeholder="Last name" pattern="^[A-Z][a-z]{2,}$" [formControl]="lastname" />
+          <mat-error *ngIf="lastname.hasError('required')">
+            Last name is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="
+          lastname.hasError('pattern') &&
+          !lastname.hasError('required')
+        "> 
+      Please enter a valid last name
+    </mat-error>
+        </mat-form-field>
+      </div> 
+
+      <div>
+        <mat-form-field appearance="outline" class="mobile">
+          <mat-label aria-autocomplete="off">Mobile Number</mat-label>
+          <input matInput placeholder="Enter your mobile number" pattern="^[1-9][0-9]{9}$" [formControl]="mobileFormControl" />
+          <mat-error *ngIf="mobileFormControl.hasError('required')">
+            Mobile Number is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="
+          mobileFormControl.hasError('pattern') &&
+          !mobileFormControl.hasError('required')
+        "> 
+      Please enter a valid mobile number
+    </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="email">
+          <mat-label aria-autocomplete="off">Email id</mat-label>
+          <input matInput placeholder="Enter your email id" [formControl]="emailFormControl"/>
+          <mat-error *ngIf="
+                emailFormControl.hasError('email') &&
+                !emailFormControl.hasError('required')
+              ">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+        <mat-form-field appearance="outline" class="password">
+          <mat-label aria-autocomplete="off">Password</mat-label>
+          <input matInput placeholder="Enter your password" minlength="8" [type]="hide ? 'password' : 'text'" [formControl]="password"
+            autocomplete="off" requried />
+            <mat-error *ngIf="password.hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+            <div class="err" role="alert" *ngIf="passwordMsg">{{passwordMsg}}</div>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="confirm">
+          <mat-label aria-autocomplete="off">Confirm</mat-label>
+          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+            [formControl]="confirmPassword" autocomplete="off" requried />
+          <mat-error *ngIf="confirmPassword.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-icon fxLayoutAlign="end center" id="suffix" matSuffix (click)="hide = !hide">{{
+            hide ? "visibility_off" : "visibility"
+          }}</mat-icon>
+      </div>
+      
+      <mat-card-actions>
+      <div class="signup-in">
+        <button mat-button (click)="login()" class="sinin-link" fxLayoutAlign="center">
+          Sign in insted
+        </button>
+
+        <button id="signbutton" mat-button (click)="register()" fxLayoutAlign="center center" mat-raised-button
+          color="primary">
+          Sign up
+      </button>
+      </div>
+      <div class="err" role="alert" *ngIf="errorMsg">{{errorMsg}}</div>
+    </mat-card-actions>
+    </body>
+  </mat-card>
+</div> 
+  </form>
+</html>
