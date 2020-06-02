@@ -32,15 +32,36 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class ResetpasswordComponent implements OnInit {
   errorMsg: string;
   constructor(private router: Router,private userService: UserService) {}
-  password = new FormControl("", [Validators.required]);
+
   ngOnInit() {}
   model = {};
   hide = true;
+  password = new FormControl("", [Validators.required,Validators.pattern("((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%!]).{8,40})")]);
+  confirmPassword = new FormControl("", [Validators.required]);
+  //To display password error message
+  getPasswordErrorMessage() {
+    return this.password.hasError("required")
+    ? "Password is required"
+    : this.password.hasError("pattern")
+      ? "Please enter a valid password"
+      : " ";
+  }
+  //To display confirmPassword error message.
+  getConfirmPasswordErrorMessage() {
+    return this.confirmPassword.hasError("required")
+    ? "Confirm password is required"
+      : " ";
+  }
+  validate(){
+    if(this.password.valid && this.confirmPassword.valid){
+    return "false";
+    }
+    return "true";
+  }
 
   submit(){
     var reqbody = {
       password: this.password.value,
-     // confirmPassword: this.confirmPassword.value
     };   
     this.userService.resetpassword(reqbody).subscribe(
       data => {
