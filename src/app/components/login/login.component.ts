@@ -8,7 +8,7 @@ import {
 import { ErrorStateMatcher } from "@angular/material/core";
 import { Router } from "@angular/router";
 import { UserService } from "../../service/userservice.service";
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -36,26 +36,40 @@ export class LoginComponent implements OnInit {
   incorrectInput: string;
   constructor(
     private router: Router,
+    private snackBar: MatSnackBar,
     public userService: UserService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit(
+  ) {}
   model = {};
   hide = true;
+  emailFormControl = new FormControl("", [ Validators.required, Validators.email]); 
+  password = new FormControl("", [Validators.required,Validators.pattern("((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%!]).{8,40})")]);
 
-  emailFormControl = new FormControl("", [
-    Validators.required,
-    Validators.email
-  ]); //Formcontrol for binding the value.
-  password = new FormControl("", [Validators.required]);
-
-  //method to show email error message
-
+  //To display email error message
+  getEmailErrorMessage() {
+    return this.emailFormControl.hasError("required")
+    ? "Email id is required"
+    : this.emailFormControl.hasError("email")
+      ? "Please enter a valid email id"
+      : " ";
+  }
+  //To display password error message
+  getPasswordErrorMessage() {
+    return this.password.hasError("required")
+    ? "Password is required"
+    : this.password.hasError("pattern")
+      ? "Please enter a valid password"
+      : " ";
+  }
+validate(){
+  if(this.emailFormControl.valid && this.password.valid){
+  return "false";
+  }
+  return "true";
+}
   login() {
-    try {
-      if (this.emailFormControl.value == "" || this.password.value == "")
-        throw "fields cannot be empty";
-
       var reqbody = {
         email: this.emailFormControl.value,
         password: this.password.value
@@ -67,17 +81,15 @@ export class LoginComponent implements OnInit {
           console.log(data);
           this.response = data;
           localStorage.setItem("token", this.response.any);
-          //this.successMsg = "Logged in successfully!!";
+          this.successMsg = "Logged in successfully!!";
           this.router.navigate(["dashboard"]);
         },
         err => {
           console.log("err", err);
+         // this.snackBar.open("Login Failed", "Ok", { duration: 5000 });
           this.failedMsg = "Logged in failed!!";
         }
       );
-    } catch {
-      this.incorrectInput = "Email or Password can not be empty!";
-    }
   }
   register() {
     this.router.navigate(["register"]);
