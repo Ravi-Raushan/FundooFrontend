@@ -38,7 +38,6 @@ import {
   MatSidenavModule,
   MatSliderModule,
   MatSlideToggleModule,
-  MatSnackBarModule,
   MatSortModule,
   MatStepperModule,
   MatTableModule,
@@ -49,6 +48,7 @@ import {
 }
   
 from '@angular/material';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { ContenteditableModule } from '@ng-stack/contenteditable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

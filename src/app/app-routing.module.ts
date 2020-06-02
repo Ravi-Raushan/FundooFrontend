@@ -7,6 +7,7 @@ import {ForgotpasswordComponent} from './components/forgotpassword/forgotpasswor
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import { from } from 'rxjs';
 import { AuthguardService } from './service/authguard.service';
+import { ImagecropperComponent } from './components/imagecropper/imagecropper.component';
 /*import { NoteComponent } from './components/note/note.component';
 import {UpdatenoteComponent} from "../app/components/updatenote/updatenote.component";
 import {ArchiveComponent} from "../app/components/archive/archive.component";
@@ -15,7 +16,6 @@ import { RemindersComponent } from '../app/components/reminders/reminders.compon
 
 import {ReminderComponent} from '../app/components/reminder/reminder.component';
 import { SearchComponent } from './components/search/search.component';
-import { ImagecropperComponent } from './components/imagecropper/imagecropper.component';
 import { LabelsComponent } from './components/labels/labels.component';
 import { LabelseditComponent } from './components/labelsedit/labelsedit.component';
 import { CollaboratorsComponent } from './components/collaborators/collaborators.component';
@@ -44,7 +44,7 @@ const routes: Routes = [
   {
     path:'dashboard',
     component:DashboardComponent,canActivate:[AuthguardService]
-  }
+  },
    /* children:[
       {
         path:'',
@@ -89,12 +89,12 @@ const routes: Routes = [
   {
     path: 'updatenote',
     component: UpdatenoteComponent
-  },
+  },*/
   {
     path : 'imagecropper',
     component: ImagecropperComponent
-  },
-  {
+  }
+ /* {
     path : 'labelsedit',
     component : LabelseditComponent
   }*/

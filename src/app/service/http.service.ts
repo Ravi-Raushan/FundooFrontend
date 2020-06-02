@@ -50,7 +50,7 @@ export class HttpService {
     });
     console.log("token",headers);
     // set header in your http request
-    return this.http.post(this.apiBaseurl+url, data, {
+    return this.http.put(this.apiBaseurl+url, data, {
       headers: headers
     });
   }

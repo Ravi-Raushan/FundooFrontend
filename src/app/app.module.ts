@@ -13,6 +13,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ImagecropperComponent } from './components/imagecropper/imagecropper.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatSelectModule } from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
@@ -40,6 +42,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     ResetpasswordComponent,
     ForgotpasswordComponent,
     DashboardComponent,
+    ImagecropperComponent,
   ],
   imports: [
     DragDropModule,
@@ -62,6 +65,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatTooltipModule,
     MatSnackBarModule,
     AppMaterial,
+    ImageCropperModule,
     BrowserModule,
     AngularFireMessagingModule,
     AngularFireDatabaseModule,
