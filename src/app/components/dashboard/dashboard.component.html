@@ -122,7 +122,7 @@
   
     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
       <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-        fixedTopGap="56" (openedStart)="sidenav(open)" (closedStart)="sidenav(close)" class="sidenav">
+        fixedTopGap="56" (openedStart)="sidenav()" (closedStart)="sidenav()" class="sidenav">
         <mat-nav-list>
           <mat-list role="List">
             <div>

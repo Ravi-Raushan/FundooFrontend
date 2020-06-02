@@ -15,11 +15,11 @@ import {
   import { MatSnackBar } from "@angular/material";
   //import { NoteServiceService } from 'src/app/service/noteService/note-service.service';
   import { DOCUMENT } from '@angular/common';
-  //import { ImagecropperComponent } from '../imagecropper/imagecropper.component'
- // import { DataserviceService } from 'src/app/service/dataservice/dataservice.service';
+  import { ImagecropperComponent } from '../imagecropper/imagecropper.component'
+  import { DataserviceService } from 'src/app/service/dataservice.service';
  // import { LabelseditComponent } from '../labelsedit/labelsedit.component'
   import { from } from 'rxjs';
-  // import { ImageCropperComponent } from 'ngx-image-cropper';
+ import { ImageCropperComponent } from 'ngx-image-cropper';
   
   @Component({
     selector: "app-dashboard",
@@ -45,7 +45,7 @@ import {
       public dialog: MatDialog,
       private snackBar: MatSnackBar,
      // private notes: NoteServiceService,
-     // private data: DataserviceService
+      private data: DataserviceService
     ) {
       this.mobileQuery = media.matchMedia("(max-width: 600px)");
       this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -55,7 +55,7 @@ import {
     }
   
     ngOnInit() {
-    //  this.getLabels()
+      //this.getLabels()
       this.islist = true;
       this.isClicked = false;
     }
@@ -116,16 +116,16 @@ import {
     editlabes() {
       this.router.navigate(['dashboard/labels'])
     }
- /*   lookfor() {
+    lookfor() {
       // this.changeMessage(this.Search)
       this.data.changeMessage(this.Search)
-    }*/
+    }
   
     sidenav() {
       console.log('i am run');
-  
     }
-  /*  fileUpload($event) {
+  
+   fileUpload($event) {
       console.log("jhgdhs==>", $event);
   
       this.setProfilePic($event)
@@ -142,7 +142,7 @@ import {
         } this.img = result.data;
         localStorage.setItem('image', this.img)
       })
-    }*/
+    }
   
     openSnackBar() {
       this.snackBar.open('Signed out successfully', 'Ok', { duration: 2000 })
@@ -162,9 +162,9 @@ import {
     goToUrl4(): void {
       this.document.location.href = 'https://www.google.com/intl/en-GB/gmail/about';
     }
- /*   openLabel() {
+    openLabel() {
       {
-        try {
+       /* try {
           const dialogRef = this.dialog.open(LabelseditComponent, {
             width: 'auto',
             data: {}
@@ -174,11 +174,11 @@ import {
         } catch (error) {
           console.log("error occured");
         }
-      }
+      }*/
     }
-  
-    getLabels() {
-      try {
+
+ /*   getLabels() {
+     try {
         var userid = localStorage.getItem("userid")
         this.notes.getLableList().subscribe(data => {
           console.log("labels in labels edit comp==>", data);
@@ -190,11 +190,12 @@ import {
         })
       } catch (error) {
         console.log("error at getting labels");
-      }
+      }*/
     }
+    
   
-    sendLable(lable){
-      this.data.sendLable(lable)
-    }*/
+    sendLable(){
+     // this.data.sendLable(lable)
+    }
   }
   
