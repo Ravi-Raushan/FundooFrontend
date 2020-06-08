@@ -3,23 +3,15 @@ import {
     Component,
     OnInit,
     Inject,
-    ViewChild,
-    ElementRef,
-    EventEmitter,
-    Output
   } from "@angular/core";
   import { MediaMatcher } from "@angular/cdk/layout";
   import { MatDialog, } from "@angular/material";
   import { ChangeDetectorRef, OnDestroy } from "@angular/core";
   import { Router } from "@angular/router";
   import { MatSnackBar } from "@angular/material";
-  //import { NoteServiceService } from 'src/app/service/noteService/note-service.service';
   import { DOCUMENT } from '@angular/common';
-  import { ImagecropperComponent } from '../imagecropper/imagecropper.component'
+  import { UserService } from "../../service/userservice.service";
   import { DataserviceService } from 'src/app/service/dataservice.service';
- // import { LabelseditComponent } from '../labelsedit/labelsedit.component'
-  import { from } from 'rxjs';
- import { ImageCropperComponent } from 'ngx-image-cropper';
   
   @Component({
     selector: "app-dashboard",
@@ -33,8 +25,11 @@ import {
     labelList: any;
     email: any;
     username: string;
-    img = localStorage.getItem('image');
+    response: any;
+    msg: string;
+    imgFile: File;
     labelsList: any
+    img = localStorage.getItem('image');
     private _mobileQueryListener: () => void;
   
     constructor(
@@ -44,7 +39,7 @@ import {
       private router: Router,
       public dialog: MatDialog,
       private snackBar: MatSnackBar,
-     // private notes: NoteServiceService,
+      private userService: UserService,
       private data: DataserviceService
     ) {
       this.mobileQuery = media.matchMedia("(max-width: 600px)");
@@ -55,14 +50,12 @@ import {
     }
   
     ngOnInit() {
-      //this.getLabels()
       this.islist = true;
       this.isClicked = false;
     }
     islist;
     isClicked;
     changeview() {
-      // debugger
       if (this.islist) {
         this.islist = false;
         console.log("list", this.islist);
@@ -75,7 +68,6 @@ import {
         console.log("grid", this.isClicked);
         this.islist = true;
       }
-     // this.notes.gridview();
     }
   
     ngOnDestroy(): void {
@@ -99,7 +91,8 @@ import {
       this.router.navigate(['dashboard/reminders'])
     }
     signout() {
-      localStorage.clear();
+     // localStorage.clear();
+      localStorage.removeItem("token");
       this.router.navigate(['login']);
     }
     archive() {
@@ -117,7 +110,6 @@ import {
       this.router.navigate(['dashboard/labels'])
     }
     lookfor() {
-      // this.changeMessage(this.Search)
       this.data.changeMessage(this.Search)
     }
   
@@ -131,22 +123,25 @@ import {
       this.setProfilePic($event)
     }
    setProfilePic($event) {
-      const dialogRef = this.dialog.open(ImagecropperComponent, {
-        width: '600px',
-        data: $event
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        if (result == undefined) {
-          return;
-        } this.img = result.data;
-        localStorage.setItem('image', this.img)
-      })
+       this.imgFile = $event.target.files[0];
+       var formData = new FormData();
+    formData.append("file", this.imgFile);
+    this.userService.profilePic(formData).subscribe(
+      data => {
+      console.log("------------------------------", data);
+      this.response = data;
+      this.msg = "Uploaded";
+      localStorage.setItem("image", this.response.result);
+    },
+    err => {
+      this.msg = "Error Occur";
+
+    });
     }
   
-    openSnackBar() {
+   /* openSnackBar() {
       this.snackBar.open('Signed out successfully', 'Ok', { duration: 2000 })
-    }
+    }*/
     goToUrl(): void {
       this.document.location.href = 'https://www.google.com';
     }
@@ -163,39 +158,10 @@ import {
       this.document.location.href = 'https://www.google.com/intl/en-GB/gmail/about';
     }
     openLabel() {
-      {
-       /* try {
-          const dialogRef = this.dialog.open(LabelseditComponent, {
-            width: 'auto',
-            data: {}
-  
-          })
-  
-        } catch (error) {
-          console.log("error occured");
-        }
-      }*/
+      { 
     }
-
- /*   getLabels() {
-     try {
-        var userid = localStorage.getItem("userid")
-        this.notes.getLableList().subscribe(data => {
-          console.log("labels in labels edit comp==>", data);
-  
-          this.labelsList = data['data'];
-          this.labelsList = this.labelsList.reverse()
-          console.log("svg", this.labelsList);
-  
-        })
-      } catch (error) {
-        console.log("error at getting labels");
-      }*/
     }
     
-  
-    sendLable(){
-     // this.data.sendLable(lable)
-    }
+    sendLable(){ }
   }
   
