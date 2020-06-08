@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit {
   errorMsg: string;
   passwordMsg: string;
   myPatt: string;
+  toggle: boolean;
   constructor(
     private router: Router,
     private snackBar: MatSnackBar,
@@ -46,7 +47,7 @@ export class RegisterComponent implements OnInit {
   hide = true;
   firstname = new FormControl("", [Validators.required,Validators.pattern("^[A-Z][a-z]{2,}$")]);
   lastname = new FormControl("", [Validators.required,Validators.pattern("^[A-Z][a-z]{2,}$")]);
-  mobileFormControl = new FormControl("", [Validators.required,Validators.pattern("^[1-9][0-9]{9}$")]);
+  mobileFormControl = new FormControl("", [Validators.required,Validators.pattern("^[6-9][0-9]{9}$")]);
   emailFormControl = new FormControl("", [ Validators.required, Validators.email]);
   password = new FormControl("", [Validators.required,Validators.pattern("((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%!]).{8,40})")]);
   confirmPassword = new FormControl("", [Validators.required]);
@@ -100,8 +101,10 @@ getMobileErrorMessage() {
   validate(){
     if(this.emailFormControl.valid && this.password.valid && this.firstname.valid && this.lastname.valid &&
        this.mobileFormControl.valid && this.confirmPassword.valid){
+        this.toggle = false;
     return "false";
     }
+    this.toggle = true;
     return "true";
   }
 
