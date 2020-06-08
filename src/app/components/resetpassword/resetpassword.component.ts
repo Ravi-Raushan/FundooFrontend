@@ -31,6 +31,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 export class ResetpasswordComponent implements OnInit {
   errorMsg: string;
+  toggle: boolean;
   constructor(private router: Router,private userService: UserService) {}
 
   ngOnInit() {}
@@ -54,8 +55,10 @@ export class ResetpasswordComponent implements OnInit {
   }
   validate(){
     if(this.password.valid && this.confirmPassword.valid){
+      this.toggle = false;
     return "false";
     }
+    this.toggle = true;
     return "true";
   }
 
