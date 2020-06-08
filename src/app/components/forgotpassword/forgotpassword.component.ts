@@ -30,39 +30,48 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class ForgotpasswordComponent implements OnInit {
- // email: string;
-  errorMsg: string;
+  msg: string;
   response: any;
+  toggle: boolean;
   constructor(private router: Router, private userService: UserService) {}
-  emailFormControl = new FormControl("", [
-    Validators.required,
-    Validators.email
-  ]);
- // password = new FormControl("", [Validators.required]);
+  emailFormControl = new FormControl("", [ Validators.required, Validators.email]); 
   ngOnInit() {}
   model = {};
   hide = true;
- 
- matcher = new MyErrorStateMatcher();
 
+    //To display email error message
+  getEmailErrorMessage() {
+    return this.emailFormControl.hasError("required")
+    ? "Email id is required"
+    : this.emailFormControl.hasError("email")
+      ? "Please enter a valid email id"
+      : " ";
+  }
+  validate(){
+    if(this.emailFormControl.valid){
+      this.toggle = false;
+      return "false";
+    }
+    this.toggle = true;
+    return "true";
+  }
   forgotpassword() {
-    var reqbody = {
-    email: this.emailFormControl.value
-    };
-    console.log(reqbody);
-    this.userService.forgotpassword(reqbody).subscribe(
+    let email = this.emailFormControl.value
+    console.log(email);
+    this.userService.forgotpassword(email).subscribe(
       data => {
-        console.log("token",data);
+        console.log(data);
         this.response = data;
-        localStorage.setItem("token", this.response);
-        this.errorMsg = "A link is send to your email id!";
+        localStorage.setItem("token", this.response.result);
+        this.msg = "A link is send to your email id!";
       },
       err => {
         console.log(err);
-        this.errorMsg = "Failed to send link!";  
+        this.msg = "Failed to send link!";  
       });
   }
   login() {
     this.router.navigate(["login"]);
   }
+  matcher = new MyErrorStateMatcher();
 }
