@@ -12,14 +12,14 @@ export class UserService {
   register(body: any) {
     return this.service.postUser(body, "/user/registration");
   }
-  forgotpassword(body: any) {
-    return this.service.postUser(body,"/user/forgotPassword");
+  forgotpassword(email: string) {
+    return this.service.postUrl("/user/forgotPassword/"+email);
   }
   resetpassword(body: any) {
     return this.service.resetpassword(body, "/user/resetPassword");
   }
   profilePic(body: any) {
      console.log("res @ user service===>",body);
-    return this.service.put("setProfilePic", body)
+    return this.service.put("/user/uploadFile", body);
   }
 }
