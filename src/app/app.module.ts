@@ -13,7 +13,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ImagecropperComponent } from './components/imagecropper/imagecropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatSelectModule } from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -24,12 +23,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppMaterial } from "./app.material.module";
-import { AngularFireMessagingModule } from '@angular/fire/messaging';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireModule } from '@angular/fire';
-import { MessagingService } from './shared/messaging.service';
-import { environment } from '../environments/environment';
 import { AsyncPipe } from '../../node_modules/@angular/common';
 import {UserService} from './service/userservice.service'
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -42,7 +35,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     ResetpasswordComponent,
     ForgotpasswordComponent,
     DashboardComponent,
-    ImagecropperComponent,
   ],
   imports: [
     DragDropModule,
@@ -67,12 +59,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     AppMaterial,
     ImageCropperModule,
     BrowserModule,
-    AngularFireMessagingModule,
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [MessagingService, AsyncPipe,UserService],
+  providers: [AsyncPipe,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

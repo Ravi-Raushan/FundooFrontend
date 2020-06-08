@@ -5,21 +5,8 @@ import { RegisterComponent } from './components/register/register.component';
 import {ResetpasswordComponent} from './components/resetpassword/resetpassword.component';
 import {ForgotpasswordComponent} from './components/forgotpassword/forgotpassword.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
-import { from } from 'rxjs';
 import { AuthguardService } from './service/authguard.service';
-import { ImagecropperComponent } from './components/imagecropper/imagecropper.component';
-/*import { NoteComponent } from './components/note/note.component';
-import {UpdatenoteComponent} from "../app/components/updatenote/updatenote.component";
-import {ArchiveComponent} from "../app/components/archive/archive.component";
-import { TrashComponent } from '../app/components/trash/trash.component';
-import { RemindersComponent } from '../app/components/reminders/reminders.component'
 
-import {ReminderComponent} from '../app/components/reminder/reminder.component';
-import { SearchComponent } from './components/search/search.component';
-import { LabelsComponent } from './components/labels/labels.component';
-import { LabelseditComponent } from './components/labelsedit/labelsedit.component';
-import { CollaboratorsComponent } from './components/collaborators/collaborators.component';
-*/
 const routes: Routes = [
   {
     path : '',
@@ -34,7 +21,7 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path:'resetpassword',
+    path:'resetpassword/'+ localStorage.getItem("token"),
     component:ResetpasswordComponent 
   },
   {
@@ -44,61 +31,7 @@ const routes: Routes = [
   {
     path:'dashboard',
     component:DashboardComponent,canActivate:[AuthguardService]
-  },
-   /* children:[
-      {
-        path:'',
-        redirectTo : 'note',
-        pathMatch : 'full'
-      },
-      {
-        path:'note',
-        component:NoteComponent
-      },
-      {
-        path :'trash',
-        component : TrashComponent
-      },
-      {
-        path : 'archive',
-        component: ArchiveComponent
-      },
-      {
-        path: 'reminders',
-        component: RemindersComponent
-      },
-      {
-        path: 'reminder',
-        component: ReminderComponent
-      },
-      {
-        path: 'search',
-        component: SearchComponent
-      },
-      {
-        path: 'labels',
-        component: LabelsComponent
-
-      },
-      {
-        path: 'collaborators',
-        component: CollaboratorsComponent
-      }
-    ]*/
-/*  },
-  {
-    path: 'updatenote',
-    component: UpdatenoteComponent
-  },*/
-  {
-    path : 'imagecropper',
-    component: ImagecropperComponent
   }
- /* {
-    path : 'labelsedit',
-    component : LabelseditComponent
-  }*/
-
 ];
 
 @NgModule({
