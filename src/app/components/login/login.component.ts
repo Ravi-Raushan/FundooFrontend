@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   successMsg: string;
   failedMsg: string;
   incorrectInput: string;
+  toggle: boolean;
   constructor(
     private router: Router,
     private snackBar: MatSnackBar,
@@ -65,8 +66,10 @@ export class LoginComponent implements OnInit {
   }
 validate(){
   if(this.emailFormControl.valid && this.password.valid){
-  return "false";
+    this.toggle = false;
+    return "false";
   }
+  this.toggle = true;
   return "true";
 }
   login() {
@@ -80,14 +83,15 @@ validate(){
         data => {
           console.log(data);
           this.response = data;
-          localStorage.setItem("token", this.response.any);
-          this.successMsg = "Logged in successfully!!";
+          localStorage.setItem("token", this.response.result);
+          localStorage.setItem("email",this.emailFormControl.value);
           this.router.navigate(["dashboard"]);
         },
         err => {
           console.log("err", err);
-         // this.snackBar.open("Login Failed", "Ok", { duration: 5000 });
-          this.failedMsg = "Logged in failed!!";
+        // this.snackBar.open("Login Failed", "Ok", { duration: 5000 });
+          this.failedMsg = err.error;
+          // "Logged in failed!!";
         }
       );
   }

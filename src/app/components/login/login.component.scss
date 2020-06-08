@@ -1,4 +1,7 @@
 @import "../../scss/colour.scss";
+.icons{
+  color: gray;
+}
 .err{
   text-align: center;
   font-family: "Times New Roman";
@@ -70,10 +73,6 @@
   font-family: sans-serif;
 }
 
-.email {
-  width: 100%;
-}
-
 .sign {
   font-weight: 100;
   margin-left: 0%;
@@ -85,22 +84,32 @@
   align-content: center;
 }
 .password {
+  margin-top: 1%;
   width: 80%;
   align-content: center;
 }
 
 .link {
   color: $lblue;
-  margin-left: -18%;
+  margin-left: 5%;
+  margin-bottom: 10%;
 }
 .pass-link {
   color: $lblue;
-  margin-left: 5%;
+  margin-left: -20%;
+  background: white;
 }
 #sigi-button {
+  margin-left: 70%;
+  font-weight: bold;
+  color: white;
+ // border: 2px solid black;
+}
+.gray{
+  background-color: gray;
+}
+.blue{
   background-color: $lblue;
-  font-family: "Gill Sans";
-  margin-right: -6%;
 }
 #forget {
   color: $lgreen;

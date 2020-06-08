@@ -23,43 +23,38 @@
 
       <div fxLayout="column" fxLayoutAlign="space-around center">
         <mat-form-field appearance="outline" class="email">
-          <mat-label aria-autocomplete="off">Email id</mat-label>
-          <input matInput placeholder="Enter your email id" [formControl]="emailFormControl"
-            [errorStateMatcher]="matcher" />
-         <mat-error *ngIf="emailFormControl.invalid ">{{getEmailErrorMessage()}}</mat-error>
+          <mat-label aria-autocomplete="off">Enter your email id</mat-label>
+          <input matInput placeholder="Enter your email id" [formControl]="emailFormControl" [errorStateMatcher]="matcher" />
+          <mat-icon class="icons" matSuffix>email</mat-icon>
+          <mat-error *ngIf="emailFormControl.invalid ">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <!-- user password -->
 
         <mat-form-field appearance="outline" class="password">
           <mat-label>Enter your password</mat-label>
-          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password"
+          <input matInput placeholder="Enter your password" title="Password contain upper case, lowercase, spacial char, and number" [type]="hide ? 'password' : 'text'" [formControl]="password"
             autocomplete="off" requried />
           <mat-error *ngIf="password.invalid ">{{getPasswordErrorMessage()}}</mat-error>
-          <mat-icon matSuffix (click)="hide = !hide">{{
+          <mat-icon class="icons" matSuffix (click)="hide = !hide">{{
               hide ? "visibility_off" : "visibility"
             }}</mat-icon>
         </mat-form-field>
+
       </div>
-      <div>
-        <button mat-button (click)="forgotpassword()" class="pass-link" fxLayoutAlign="center">
-          Forgot password?
+      <div  id="register">
+        <button mat-button (click)="forgotpassword()" class="pass-link" > Forgot password?</button>
+        <button id="sigi-button" mat-button (click)="login()" [disabled]=this.validate()  [ngClass]="{'gray' : toggle, 'blue': !toggle}" fxLayoutAlign="center center">
+          Sign in
         </button>
       </div>
       <br>
-      <div id="register">
-        <button mat-button (click)="register()" class="link" fxLayoutAlign="center">
-          Create account
-        </button>
-        <button id="sigi-button" mat-button (click)="login()" [disabled]=this.validate() fxLayoutAlign="center center" mat-raised-button
-          color="primary">
-          Sign in
-        </button>
+      <div>
+        <button mat-button (click)="register()" class="link"> Create account </button>
       </div>
       <div class="err" role="alert" *ngIf="successMsg">{{successMsg}}</div>
       <div class="err" role="alert" *ngIf="incorrectInput">{{incorrectInput}}</div>
       <div class="err" role="alert" *ngIf="failedMsg">{{failedMsg}}</div>
-      <!-- Sign in button -->
     </body>
   </mat-card>
 </div>
