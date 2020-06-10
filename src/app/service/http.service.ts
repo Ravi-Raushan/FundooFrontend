@@ -35,7 +35,7 @@ export class HttpService {
     });
   }
 
-  put(url: string, body: any): any {
+  upload(url: string, body: any): any {
     url = this.apiBaseurl + url;
     const httpOptions = {
       headers: new HttpHeaders({
@@ -43,25 +43,6 @@ export class HttpService {
       })
     };
     return this.http.post(url, body, httpOptions);
-  }
-  putUser(url: string ): any {
-    url = this.apiBaseurl + url;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        // "Content-Type": "application/json"
-        //token: localStorage.getItem("token")
-      })
-    };
-    return this.http.put(url, httpOptions);
-  }
-  getHttp(url) {
-    const httpTocken = {
-      headers: new HttpHeaders({
-        "content-Type": "application/json",
-        token: localStorage.getItem("token")
-      })
-    };
-    return this.http.get(this.apiBaseurl + url, httpTocken);
   }
 
 }
