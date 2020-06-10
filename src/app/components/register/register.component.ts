@@ -1,28 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import {
   FormControl,
-  FormGroupDirective,
-  NgForm,
   Validators
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { UserService } from "../../service/userservice.service";
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ErrorStateMatcher } from "@angular/material/core";
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+//import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: "app-register",
@@ -34,9 +17,9 @@ export class RegisterComponent implements OnInit {
   passwordMsg: string;
   myPatt: string;
   toggle: boolean;
+  response: any;
   constructor(
     private router: Router,
-    private snackBar: MatSnackBar,
     public userService: UserService
   ) {}
 
@@ -120,6 +103,7 @@ getMobileErrorMessage() {
     this.userService.register(reqbody).subscribe(
       data => {
         console.log(data);
+        this.response = data;
         this.router.navigate(["login"]);
       },
       err => {
@@ -130,5 +114,4 @@ getMobileErrorMessage() {
   login() {
     this.router.navigate(["login"]);
   }
-  matcher = new MyErrorStateMatcher();
 }

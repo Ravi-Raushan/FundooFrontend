@@ -19,14 +19,14 @@
         <mat-form-field fxFlex.xs="100" appearance="outline" id="firstname">
           <mat-label fxFlex="40" aria-autocomplete="off" > First name</mat-label>
           <input matInput placeholder="First name" [formControl]="firstname" title="First name strat with upper case and min length 3"
-           [errorStateMatcher]="matcher"/>
+           />
           <mat-icon class="icons" matSuffix >person_outline</mat-icon>
           <mat-error *ngIf="firstname.invalid ">{{getFirstnameErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field fxFlex.xs="100" appearance="outline" id="lastname">
           <mat-label fxFlex="40" aria-autocomplete="off"> Last name</mat-label>
           <input matInput placeholder="Last name" [formControl]="lastname" title="Last name strat with upper case and min length 3"
-          [errorStateMatcher]="matcher"/>
+          />
           <mat-icon class="icons" matSuffix >person_outline</mat-icon>
           <mat-error *ngIf="lastname.invalid ">{{getLastnameErrorMessage()}}</mat-error>
         </mat-form-field>
@@ -35,7 +35,7 @@
       <div>
         <mat-form-field appearance="outline" class="mobile">
           <mat-label aria-autocomplete="off">Mobile Number</mat-label>
-          <input matInput placeholder="Enter your mobile number" [formControl]="mobileFormControl" [errorStateMatcher]="matcher" />
+          <input matInput placeholder="Enter your mobile number" [formControl]="mobileFormControl" />
           <mat-icon class="icons" matSuffix>phone</mat-icon>
           <mat-error *ngIf="mobileFormControl.invalid ">{{getMobileErrorMessage()}}</mat-error>
         </mat-form-field>
@@ -44,7 +44,7 @@
       <div>
         <mat-form-field appearance="outline" class="email">
           <mat-label aria-autocomplete="off">Email id</mat-label>
-          <input matInput placeholder="Enter your email id" [formControl]="emailFormControl" [errorStateMatcher]="matcher"/>
+          <input matInput placeholder="Enter your email id" [formControl]="emailFormControl" />
           <mat-icon class="icons" matSuffix>email</mat-icon>
           <mat-error *ngIf="emailFormControl.invalid ">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
@@ -54,7 +54,7 @@
         <mat-form-field appearance="outline" class="password">
           <mat-label aria-autocomplete="off">Password</mat-label>
           <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password"
-          [errorStateMatcher]="matcher" autocomplete="off" requried title="Password contain upper case, lowercase, spacial char, and number"/>
+          autocomplete="off" requried title="Password contain upper case, lowercase, spacial char, and number"/>
             <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
             <mat-icon class="icons" matSuffix (click)="hide = !hide">{{
               hide ? "visibility_off" : "visibility"
@@ -64,7 +64,7 @@
         <mat-form-field appearance="outline" class="confirm">
           <mat-label aria-autocomplete="off">Confirm</mat-label>
           <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
-            [formControl]="confirmPassword" [errorStateMatcher]="matcher" autocomplete="off" requried pattern="{{ password.value }}"/>
+            [formControl]="confirmPassword" autocomplete="off" requried pattern="{{ password.value }}"/>
             <mat-error *ngIf="confirmPassword.invalid">{{getConfirmPasswordErrorMessage()}}</mat-error>
             <mat-error *ngIf="confirmPassword.hasError('pattern')">Password Mismatch</mat-error>
             <mat-icon class="icons" matSuffix (click)="hide = !hide">{{
