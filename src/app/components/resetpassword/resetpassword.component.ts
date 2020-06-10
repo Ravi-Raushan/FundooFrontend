@@ -1,27 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import {
   FormControl,
-  FormGroupDirective,
-  NgForm,
   Validators
 } from "@angular/forms";
-import { ErrorStateMatcher } from "@angular/material/core";
 import { Router } from "@angular/router";
 import { UserService } from "../../service/userservice.service";
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
 
 @Component({
   selector: "app-resetpassword",
@@ -69,6 +52,7 @@ export class ResetpasswordComponent implements OnInit {
     this.userService.resetpassword(reqbody).subscribe(
       data => {
         console.log(data);
+        localStorage.removeItem("token");
         this.router.navigate(["login"]);
       },
       err => {
@@ -76,7 +60,6 @@ export class ResetpasswordComponent implements OnInit {
         this.errorMsg = "Password Reset Failed!!";  
       });
   }
-  matcher = new MyErrorStateMatcher();
   loginTo() {
     this.router.navigate(["login"]);
   }
