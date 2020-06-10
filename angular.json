@@ -24,8 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/custom-theme.scss",
-              "src/styles.scss"
+              "src/custom-theme.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js"
@@ -91,9 +90,8 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
-            ],
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+           ],
             "scripts": []
           }
         },
