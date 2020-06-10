@@ -24,7 +24,7 @@
       <div fxLayout="column" fxLayoutAlign="space-around center">
         <mat-form-field appearance="outline" class="email">
           <mat-label aria-autocomplete="off">Enter your email id</mat-label>
-          <input matInput placeholder="Enter your email id" [formControl]="emailFormControl" [errorStateMatcher]="matcher" />
+          <input matInput placeholder="Enter your email id" [formControl]="emailFormControl" />
           <mat-icon class="icons" matSuffix>email</mat-icon>
           <mat-error *ngIf="emailFormControl.invalid ">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>

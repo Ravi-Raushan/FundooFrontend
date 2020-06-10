@@ -1,28 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import {
   FormControl,
-  FormGroupDirective,
-  NgForm,
   Validators
 } from "@angular/forms";
-import { ErrorStateMatcher } from "@angular/material/core";
 import { Router } from "@angular/router";
 import { UserService } from "../../service/userservice.service";
-import { MatSnackBar } from '@angular/material/snack-bar';
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+//import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: "app-login",
@@ -37,7 +20,6 @@ export class LoginComponent implements OnInit {
   toggle: boolean;
   constructor(
     private router: Router,
-    private snackBar: MatSnackBar,
     public userService: UserService
   ) {}
 
@@ -101,5 +83,4 @@ validate(){
   forgotpassword() {
     this.router.navigate(["forgotpassword"]);
   }
-  matcher = new MyErrorStateMatcher();
 }
