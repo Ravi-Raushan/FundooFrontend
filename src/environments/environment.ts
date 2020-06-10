@@ -5,6 +5,12 @@
 export const environment = {
   production: false,
   baseUrl: "http://localhost:8081",
+  registrationPath: "/user/registration",
+  loginPath: "/user/login",
+  forgotPasswordPath: "/user/forgotPassword/",
+  resetPasswordPath: "/user/resetPassword",
+  profilePicPath: "/user/uploadFile"
+
 };
 
 /*
