@@ -29,7 +29,7 @@ import {
     msg: string;
     imgFile: File;
     labelsList: any
-    img = localStorage.getItem('image');
+    img = localStorage.getItem(localStorage.getItem('email'));
     private _mobileQueryListener: () => void;
   
     constructor(
@@ -131,7 +131,7 @@ import {
       console.log("------------------------------", data);
       this.response = data;
       this.msg = "Uploaded";
-      localStorage.setItem("image", this.response.result);
+      localStorage.setItem(localStorage.getItem('email'), this.response.result);
     },
     err => {
       this.msg = "Error Occur";
